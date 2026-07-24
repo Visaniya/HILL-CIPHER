@@ -100,7 +100,8 @@ int main()
 # OUTPUT
 
 
-<img width="1850" height="854" alt="image" src="https://github.com/user-attachments/assets/10390fd2-c7a3-4b10-aeee-e02e2340cc66" />
+<img width="1847" height="853" alt="image" src="https://github.com/user-attachments/assets/eba34c7c-2f1f-471e-b6fa-50cf2b33d970" />
+
 
 
 
