@@ -51,83 +51,45 @@ For decryption, the ciphertext block is multiplied by the inverse of the key mat
 ```c
 #include <stdio.h>
 #include <string.h>
-#include <ctype.h>
 
 int main()
 {
-    unsigned int a[3][3] = {
-        {6, 24, 1},
-        {13, 16, 10},
-        {20, 17, 15}
-    };
+    int key[3][3], p[100], c[100];
+    char msg[100];
+    int i, j, k, len, sum;
 
-    unsigned int b[3][3] = {
-        {8, 5, 10},
-        {21, 8, 21},
-        {21, 12, 8}
-    };
+    printf("Enter Plain Text: ");
+    scanf("%s", msg);
 
-    unsigned int c[3], d[3];
-    char msg[4];
-    int i, j, t;
+    printf("Enter 3x3 Key Matrix:\n");
+    for(i = 0; i < 3; i++)
+        for(j = 0; j < 3; j++)
+            scanf("%d", &key[i][j]);
 
-    printf("Enter plain text (3 letters): ");
-    scanf("%3s", msg);
+    len = strlen(msg);
 
-    if (strlen(msg) != 3)
+    while(len % 3 != 0)
+        msg[len++] = 'X';
+    msg[len] = '\0';
+
+    for(i = 0; i < len; i++)
+        p[i] = msg[i] - 'A';
+
+    for(k = 0; k < len; k += 3)
     {
-        printf("Error: The plain text must be exactly 3 letters.\n");
-        return 1;
-    }
-
-    printf("Plain Text in Numeric Form: ");
-
-    for (i = 0; i < 3; i++)
-    {
-        msg[i] = toupper(msg[i]);
-        c[i] = msg[i] - 'A';
-        printf("%u ", c[i]);
-    }
-
-    for (i = 0; i < 3; i++)
-    {
-        t = 0;
-
-        for (j = 0; j < 3; j++)
+        for(i = 0; i < 3; i++)
         {
-            t += a[i][j] * c[j];
+            sum = 0;
+            for(j = 0; j < 3; j++)
+                sum += key[i][j] * p[k + j];
+
+            c[k + i] = sum % 26;
         }
-
-        d[i] = t % 26;
     }
 
-    printf("\nEncrypted Cipher Text: ");
-
-    for (i = 0; i < 3; i++)
-    {
-        printf("%c", d[i] + 'A');
-    }
-
-    for (i = 0; i < 3; i++)
-    {
-        t = 0;
-
-        for (j = 0; j < 3; j++)
-        {
-            t += b[i][j] * d[j];
-        }
-
-        c[i] = t % 26;
-    }
-
-    printf("\nDecrypted Plain Text: ");
-
-    for (i = 0; i < 3; i++)
-    {
+    printf("Cipher Text: ");
+    for(i = 0; i < len; i++)
         printf("%c", c[i] + 'A');
-    }
-
-    printf("\n");
 
     return 0;
 }
@@ -137,7 +99,8 @@ int main()
 
 # OUTPUT
 
-<img width="1850" height="850" alt="image" src="https://github.com/user-attachments/assets/51cf27d4-4949-4773-8ea4-61d0094704ba" />
+
+<img width="1850" height="854" alt="image" src="https://github.com/user-attachments/assets/10390fd2-c7a3-4b10-aeee-e02e2340cc66" />
 
 
 
