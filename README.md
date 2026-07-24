@@ -1,37 +1,54 @@
 # HILL CIPHER
-HILL CIPHER
-EX. NO: 3 AIM:
- 
 
-IMPLEMENTATION OF HILL CIPHER
- 
-## To write a C program to implement the hill cipher substitution techniques.
+## EX. NO: 3
 
-## DESCRIPTION:
+## AIM
 
-Each letter is represented by a number modulo 26. Often the simple scheme A = 0, B
-= 1... Z = 25, is used, but this is not an essential feature of the cipher. To encrypt a message, each block of n letters is  multiplied by an invertible n × n matrix, against modulus 26. To
-decrypt the message, each block is multiplied by the inverse of the m trix used for
- 
-encryption. The matrix used
- 
-for encryption is the cipher key, and it sho
- 
-ld be chosen
- 
-randomly from the set of invertible n × n matrices (modulo 26).
+To write a C program to implement the Hill Cipher substitution technique.
 
+---
 
-## ALGORITHM:
+# DESCRIPTION
 
-STEP-1: Read the plain text and key from the user.
-STEP-2: Split the plain text into groups of length three. 
-STEP-3: Arrange the keyword in a 3*3 matrix.
-STEP-4: Multiply the two matrices to obtain the cipher text of length three.
-STEP-5: Combine all these groups to get the complete cipher text.
+The Hill Cipher is a polygraphic substitution cipher based on linear algebra. Each letter is represented by a number modulo 26 using the following mapping:
 
-## PROGRAM 
-```
+| Letter | Value |
+|--------|------:|
+| A | 0 |
+| B | 1 |
+| C | 2 |
+| ... | ... |
+| Z | 25 |
+
+To encrypt a message, the plaintext is divided into blocks of fixed length (here, 3 letters). Each block is converted into its numerical equivalent and multiplied by an invertible **3 × 3 key matrix**. The resulting values are reduced modulo 26 to produce the ciphertext.
+
+For decryption, the ciphertext block is multiplied by the inverse of the key matrix (modulo 26), which recovers the original plaintext.
+
+---
+
+# ALGORITHM
+
+**Step 1:** Read the plaintext from the user.
+
+**Step 2:** Convert each character of the plaintext into its corresponding numerical value (A = 0, B = 1, ..., Z = 25).
+
+**Step 3:** Arrange the plaintext values as a column matrix of order **3 × 1**.
+
+**Step 4:** Multiply the plaintext matrix with the **3 × 3 encryption key matrix**.
+
+**Step 5:** Apply modulo 26 to each resulting value.
+
+**Step 6:** Convert the numerical values back into characters to obtain the ciphertext.
+
+**Step 7:** Multiply the ciphertext matrix with the inverse key matrix.
+
+**Step 8:** Apply modulo 26 and convert the numerical values back into characters to obtain the original plaintext.
+
+---
+
+# PROGRAM
+
+```c
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -115,9 +132,14 @@ int main()
     return 0;
 }
 ```
-## OUTPUT
 
-<img width="500" height="291" alt="image" src="https://github.com/user-attachments/assets/c535099b-987c-4ae2-8e8f-6b17f4859182" />
+---
+
+# OUTPUT
+
+<img width="485" height="327" alt="image" src="https://github.com/user-attachments/assets/2e778f72-2853-4fb8-9e5c-e4473c7a54ed" />
 
 
-## RESULT
+# RESULT
+
+Thus, the C program to implement the **Hill Cipher** encryption and decryption technique was successfully executed, and the corresponding ciphertext and original plaintext were obtained.
